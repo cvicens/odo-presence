@@ -1,0 +1,14 @@
+kind: LocalConfig
+apiversion: odo.dev/v1alpha1
+ComponentSettings:
+  Type: dotnet
+  SourceLocation: ./
+  SourceType: local
+  Ports:
+  - "5000"
+  Application: dotnet-app
+  Project: user1-odo-dotnet-app
+  Name: backend
+  Url:
+  - Name: backend-5000
+    Port: 5000

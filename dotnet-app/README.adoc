@@ -1,0 +1,94 @@
+= Deploying a dotnet applicacion with `odo`
+include::_attributes.adoc[]
+
+== Clone the repository
+
+[source,bash,role="execute",subs="verbatim,attributes"]
+----
+git clone 
+cd odo-presence
+export GIT_CLONE_DIR=$(pwd)
+----
+
+== Creating a namespace to deploy our application
+
+[source,bash,role="execute",subs="verbatim,attributes"]
+----
+cd dotnetapp
+odo project create {username}-odo-{app_name}
+----
+
+== Deploying the {backend_component_name} component
+
+[source,bash,role="execute",subs="verbatim,attributes"]
+----
+cd ${GIT_CLONE_DIR}/Backend
+odo create dotnet --s2i --port 5000 --app {app_name} {backend_component_name}
+odo url create --port 5000
+odo push
+----
+
+=== Testing the deployed service
+
+[source,bash,role="execute",subs="verbatim,attributes"]
+----
+TEST_URL="http://$(oc get route --selector=app.kubernetes.io/instance={backend_component_name} -o jsonpath='{.items[*].spec.host}')"
+curl ${TEST_URL}/WeatherForecast
+----
+
+== Deploying the {gateway_component_name} component
+
+[source,bash,role="execute",subs="verbatim,attributes"]
+----
+cd ${GIT_CLONE_DIR}/Gateway
+odo create dotnet --s2i --port 5000 --app {app_name} {gateway_component_name}
+odo url create --port 5000
+odo link {backend_component_name} --port 5000
+odo push
+----
+
+=== Testing the deployed service
+
+[source,bash,role="execute",subs="verbatim,attributes"]
+----
+TEST_URL="http://$(oc get route --selector=app.kubernetes.io/instance={gateway_component_name} -o jsonpath='{.items[*].spec.host}')"
+curl ${TEST_URL}/WeatherForecast
+----
+
+=== Permissions needed
+
+This needs to be run by a cluster-admin
+
+[source,bash,role="execute",subs="verbatim,attributes"]
+----
+oc adm policy add-scc-to-user privileged -z default -n {username}-odo-{app_name}
+oc adm policy add-scc-to-user anyuid -z default -n {username}-odo-{app_name}
+----
+
+=== Debugging locally the {gateway_component_name} with `telepresence`
+
+Telepresence will...
+
+[source,bash,role="execute",subs="verbatim,attributes"]
+----
+export TELEPRESENCE_USE_OCP_IMAGE=NO
+
+ODO_COMPONENT_NAME=$(yq r .odo/config.yaml ComponentSettings.Name)
+
+telepresence --swap-deployment $(oc get dc --selector=app.kubernetes.io/instance=${ODO_COMPONENT_NAME} -o jsonpath='{.items[*].metadata.name}') --expose 8080
+----
+
+From a different terminal open VS Code in ${GIT_CLONE_DIR}/Gateway
+
+Debug the application.
+
+TODO Add Image
+
+From any terminal or browser test this URL
+
+[source,bash,role="execute",subs="verbatim,attributes"]
+----
+curl http://localhost:5001/WeatherForecast
+----
+
+

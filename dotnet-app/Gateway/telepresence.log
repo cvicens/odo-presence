@@ -1,0 +1,924 @@
+   0.0 TEL | Telepresence 0.108 launched at Thu Jan  7 19:56:14 2021
+   0.0 TEL |   /usr/local/bin/telepresence --swap-deployment gateway-dotnet-app --expose 8080
+   0.0 TEL | uname: uname_result(system='Darwin', node='cvicensa-mac', release='19.2.0', version='Darwin Kernel Version 19.2.0: Sat Nov  9 03:47:04 PST 2019; root:xnu-6153.61.1~20/RELEASE_X86_64', machine='x86_64')
+   0.0 TEL | Platform: darwin
+   0.0 TEL | WSL: False
+   0.0 TEL | Python 3.9.0 (default, Oct 27 2020, 14:15:17)
+   0.0 TEL | [Clang 12.0.0 (clang-1200.0.32.21)]
+   0.0 TEL | BEGIN SPAN main.py:40(main)
+   0.0 TEL | BEGIN SPAN startup.py:83(set_kube_command)
+   0.0 TEL | Found kubectl -> /Users/cvicensa/Projects/openshift/operators/bin/kubectl
+   0.0 TEL | Found oc -> /Users/cvicensa/Projects/openshift/operators/bin/oc
+   0.0 TEL | [1] Capturing: kubectl config current-context
+   0.1 TEL | [1] captured in 0.05 secs.
+   0.1 TEL | [2] Capturing: kubectl --context user1-odo-dotnet/api-cluster-2036-2036-example-opentlc-com:6443/user1 version --short
+   0.8 TEL | [2] captured in 0.75 secs.
+   0.8 TEL | [3] Capturing: kubectl --context user1-odo-dotnet/api-cluster-2036-2036-example-opentlc-com:6443/user1 config view -o json
+   0.9 TEL | [3] captured in 0.06 secs.
+   0.9 TEL | [4] Capturing: kubectl --context user1-odo-dotnet/api-cluster-2036-2036-example-opentlc-com:6443/user1 api-versions
+   1.9 TEL | [4] captured in 1.02 secs.
+   1.9 TEL | Command: oc 1.19.0
+   1.9 TEL | Context: user1-odo-dotnet/api-cluster-2036-2036-example-opentlc-com:6443/user1, namespace: user1-odo-dotnet-app, version: 1.19.0+9f84db3
+   1.9 TEL | [5] Capturing: minishift ip
+   1.9 TEL | [5] [Errno 2] No such file or directory: 'minishift'
+   1.9 TEL | END SPAN startup.py:83(set_kube_command)    1.9s
+   1.9 >>> | Using a Pod instead of a Deployment for the Telepresence proxy. If you experience problems, please file an issue!
+   1.9 >>> | Set the environment variable TELEPRESENCE_USE_DEPLOYMENT to any non-empty value to force the old behavior, e.g.,
+   1.9 >>> |     env TELEPRESENCE_USE_DEPLOYMENT=1 telepresence --run curl hello
+   1.9 >>> | 
+   1.9 TEL | [6] Capturing: oc --context user1-odo-dotnet/api-cluster-2036-2036-example-opentlc-com:6443/user1 --namespace user1-odo-dotnet-app get dc gateway-dotnet-app -o json
+   2.9   6 | {
+   2.9   6 |     "apiVersion": "apps.openshift.io/v1",
+   2.9   6 |     "kind": "DeploymentConfig",
+   2.9   6 |     "metadata": {
+   2.9   6 |         "annotations": {
+   2.9   6 |             "app.kubernetes.io/component-source-type": "local"
+   2.9   6 |         },
+   2.9   6 |         "creationTimestamp": "2021-01-07T18:32:00Z",
+   2.9   6 |         "generation": 5,
+   2.9   6 |         "labels": {
+   2.9   6 |             "app": "dotnet-app",
+   2.9   6 |             "app.kubernetes.io/instance": "gateway",
+   2.9   6 |             "app.kubernetes.io/managed-by": "odo",
+   2.9   6 |             "app.kubernetes.io/managed-by-version": "v2.0.3",
+   2.9   6 |             "app.kubernetes.io/name": "dotnet",
+   2.9   6 |             "app.kubernetes.io/part-of": "dotnet-app",
+   2.9   6 |             "app.openshift.io/runtime-version": "latest"
+   2.9   6 |         },
+   2.9   6 |         "managedFields": [
+   2.9   6 |             {
+   2.9   6 |                 "apiVersion": "apps.openshift.io/v1",
+   2.9   6 |                 "fieldsType": "FieldsV1",
+   2.9   6 |                 "fieldsV1": {
+   2.9   6 |                     "f:metadata": {
+   2.9   6 |                         "f:annotations": {
+   2.9   6 |                             ".": {},
+   2.9   6 |                             "f:app.kubernetes.io/component-source-type": {}
+   2.9   6 |                         },
+   2.9   6 |                         "f:labels": {
+   2.9   6 |                             ".": {},
+   2.9   6 |                             "f:app": {},
+   2.9   6 |                             "f:app.kubernetes.io/instance": {},
+   2.9   6 |                             "f:app.kubernetes.io/managed-by": {},
+   2.9   6 |                             "f:app.kubernetes.io/managed-by-version": {},
+   2.9   6 |                             "f:app.kubernetes.io/name": {},
+   2.9   6 |                             "f:app.kubernetes.io/part-of": {},
+   2.9   6 |                             "f:app.openshift.io/runtime-version": {}
+   2.9   6 |                         }
+   2.9   6 |                     },
+   2.9   6 |                     "f:spec": {
+   2.9   6 |                         "f:replicas": {},
+   2.9   6 |                         "f:selector": {
+   2.9   6 |                             ".": {},
+   2.9   6 |                             "f:deploymentconfig": {}
+   2.9   6 |                         },
+   2.9   6 |                         "f:strategy": {
+   2.9   6 |                             "f:activeDeadlineSeconds": {},
+   2.9   6 |                             "f:recreateParams": {
+   2.9   6 |                                 ".": {},
+   2.9   6 |                                 "f:timeoutSeconds": {}
+   2.9   6 |                             },
+   2.9   6 |                             "f:type": {}
+   2.9   6 |                         },
+   2.9   6 |                         "f:template": {
+   2.9   6 |                             ".": {},
+   2.9   6 |                             "f:metadata": {
+   2.9   6 |                                 ".": {},
+   2.9   6 |                                 "f:annotations": {
+   2.9   6 |                                     ".": {},
+   2.9   6 |                                     "f:alpha.image.policy.openshift.io/resolve-names": {}
+   2.9   6 |                                 },
+   2.9   6 |                                 "f:creationTimestamp": {},
+   2.9   6 |                                 "f:labels": {
+   2.9   6 |                                     ".": {},
+   2.9   6 |                                     "f:deploymentconfig": {}
+   2.9   6 |                                 }
+   2.9   6 |                             },
+   2.9   6 |                             "f:spec": {
+   2.9   6 |                                 ".": {},
+   2.9   6 |                                 "f:containers": {
+   2.9   6 |                                     ".": {},
+   2.9   6 |                                     "k:{\"name\":\"gateway-dotnet-app\"}": {
+   2.9   6 |                                         ".": {},
+   2.9   6 |                                         "f:args": {},
+   2.9   6 |                                         "f:command": {},
+   2.9   6 |                                         "f:env": {
+   2.9   6 |                                             ".": {},
+   2.9   6 |                                             "k:{\"name\":\"DEBUG_PORT\"}": {
+   2.9   6 |                                                 ".": {},
+   2.9   6 |                                                 "f:name": {},
+   2.9   6 |                                                 "f:value": {}
+   2.9   6 |                                             },
+   2.9   6 |                                             "k:{\"name\":\"ODO_S2I_BUILDER_IMG\"}": {
+   2.9   6 |                                                 ".": {},
+   2.9   6 |                                                 "f:name": {},
+   2.9   6 |                                                 "f:value": {}
+   2.9   6 |                                             },
+   2.9   6 |                                             "k:{\"name\":\"ODO_S2I_DEPLOYMENT_DIR\"}": {
+   2.9   6 |                                                 ".": {},
+   2.9   6 |                                                 "f:name": {},
+   2.9   6 |                                                 "f:value": {}
+   2.9   6 |                                             },
+   2.9   6 |                                             "k:{\"name\":\"ODO_S2I_SCRIPTS_PROTOCOL\"}": {
+   2.9   6 |                                                 ".": {},
+   2.9   6 |                                                 "f:name": {},
+   2.9   6 |                                                 "f:value": {}
+   2.9   6 |                                             },
+   2.9   6 |                                             "k:{\"name\":\"ODO_S2I_SCRIPTS_URL\"}": {
+   2.9   6 |                                                 ".": {},
+   2.9   6 |                                                 "f:name": {},
+   2.9   6 |                                                 "f:value": {}
+   2.9   6 |                                             },
+   2.9   6 |                                             "k:{\"name\":\"ODO_S2I_SRC_BIN_PATH\"}": {
+   2.9   6 |                                                 ".": {},
+   2.9   6 |                                                 "f:name": {},
+   2.9   6 |                                                 "f:value": {}
+   2.9   6 |                                             },
+   2.9   6 |                                             "k:{\"name\":\"ODO_S2I_WORKING_DIR\"}": {
+   2.9   6 |                                                 ".": {},
+   2.9   6 |                                                 "f:name": {},
+   2.9   6 |                                                 "f:value": {}
+   2.9   6 |                                             },
+   2.9   6 |                                             "k:{\"name\":\"ODO_SRC_BACKUP_DIR\"}": {
+   2.9   6 |                                                 ".": {},
+   2.9   6 |                                                 "f:name": {},
+   2.9   6 |                                                 "f:value": {}
+   2.9   6 |                                             }
+   2.9   6 |                                         },
+   2.9   6 |                                         "f:envFrom": {},
+   2.9   6 |                                         "f:imagePullPolicy": {},
+   2.9   6 |                                         "f:name": {},
+   2.9   6 |                                         "f:ports": {
+   2.9   6 |                                             ".": {},
+   2.9   6 |                                             "k:{\"containerPort\":5000,\"protocol\":\"TCP\"}": {
+   2.9   6 |                                                 ".": {},
+   2.9   6 |                                                 "f:containerPort": {},
+   2.9   6 |                                                 "f:name": {},
+   2.9   6 |                                                 "f:protocol": {}
+   2.9   6 |                                             }
+   2.9   6 |                                         },
+   2.9   6 |                                         "f:resources": {},
+   2.9   6 |                                         "f:terminationMessagePath": {},
+   2.9   6 |                                         "f:terminationMessagePolicy": {},
+   2.9   6 |                                         "f:volumeMounts": {
+   2.9   6 |                                             ".": {},
+   2.9   6 |                                             "k:{\"mountPath\":\"/opt/app-root\"}": {
+   2.9   6 |                                                 ".": {},
+   2.9   6 |                                                 "f:mountPath": {},
+   2.9   6 |                                                 "f:name": {},
+   2.9   6 |                                                 "f:subPath": {}
+   2.9   6 |                                             },
+   2.9   6 |                                             "k:{\"mountPath\":\"/opt/odo/\"}": {
+   2.9   6 |                                                 ".": {},
+   2.9   6 |                                                 "f:mountPath": {},
+   2.9   6 |                                                 "f:name": {}
+   2.9   6 |                                             }
+   2.9   6 |                                         }
+   2.9   6 |                                     }
+   2.9   6 |                                 },
+   2.9   6 |                                 "f:dnsPolicy": {},
+   2.9   6 |                                 "f:initContainers": {
+   2.9   6 |                                     ".": {},
+   2.9   6 |                                     "k:{\"name\":\"copy-files-to-volume\"}": {
+   2.9   6 |                                         ".": {},
+   2.9   6 |                                         "f:args": {},
+   2.9   6 |                                         "f:command": {},
+   2.9   6 |                                         "f:imagePullPolicy": {},
+   2.9   6 |                                         "f:name": {},
+   2.9   6 |                                         "f:resources": {},
+   2.9   6 |                                         "f:terminationMessagePath": {},
+   2.9   6 |                                         "f:terminationMessagePolicy": {},
+   2.9   6 |                                         "f:volumeMounts": {
+   2.9   6 |                                             ".": {},
+   2.9   6 |                                             "k:{\"mountPath\":\"/mnt\"}": {
+   2.9   6 |                                                 ".": {},
+   2.9   6 |                                                 "f:mountPath": {},
+   2.9   6 |                                                 "f:name": {}
+   2.9   6 |                                             }
+   2.9   6 |                                         }
+   2.9   6 |                                     },
+   2.9   6 |                                     "k:{\"name\":\"copy-supervisord\"}": {
+   2.9   6 |                                         ".": {},
+   2.9   6 |                                         "f:args": {},
+   2.9   6 |                                         "f:command": {},
+   2.9   6 |                                         "f:image": {},
+   2.9   6 |                                         "f:imagePullPolicy": {},
+   2.9   6 |                                         "f:name": {},
+   2.9   6 |                                         "f:resources": {},
+   2.9   6 |                                         "f:terminationMessagePath": {},
+   2.9   6 |                                         "f:terminationMessagePolicy": {},
+   2.9   6 |                                         "f:volumeMounts": {
+   2.9   6 |                                             ".": {},
+   2.9   6 |                                             "k:{\"mountPath\":\"/opt/odo/\"}": {
+   2.9   6 |                                                 ".": {},
+   2.9   6 |                                                 "f:mountPath": {},
+   2.9   6 |                                                 "f:name": {}
+   2.9   6 |                                             }
+   2.9   6 |                                         }
+   2.9   6 |                                     }
+   2.9   6 |                                 },
+   2.9   6 |                                 "f:restartPolicy": {},
+   2.9   6 |                                 "f:schedulerName": {},
+   2.9   6 |                                 "f:securityContext": {},
+   2.9   6 |                                 "f:terminationGracePeriodSeconds": {},
+   2.9   6 |                                 "f:volumes": {
+   2.9   6 |                                     ".": {},
+   2.9   6 |                                     "k:{\"name\":\"gateway-dotnet-app-s2idata\"}": {
+   2.9   6 |                                         ".": {},
+   2.9   6 |                                         "f:name": {},
+   2.9   6 |                                         "f:persistentVolumeClaim": {
+   2.9   6 |                                             ".": {},
+   2.9   6 |                                             "f:claimName": {}
+   2.9   6 |                                         }
+   2.9   6 |                                     },
+   2.9   6 |                                     "k:{\"name\":\"odo-supervisord-shared-data\"}": {
+   2.9   6 |                                         ".": {},
+   2.9   6 |                                         "f:emptyDir": {},
+   2.9   6 |                                         "f:name": {}
+   2.9   6 |                                     }
+   2.9   6 |                                 }
+   2.9   6 |                             }
+   2.9   6 |                         }
+   2.9   6 |                     }
+   2.9   6 |                 },
+   2.9   6 |                 "manager": "odo",
+   2.9   6 |                 "operation": "Update",
+   2.9   6 |                 "time": "2021-01-07T18:33:14Z"
+   2.9   6 |             },
+   2.9   6 |             {
+   2.9   6 |                 "apiVersion": "apps.openshift.io/v1",
+   2.9   6 |                 "fieldsType": "FieldsV1",
+   2.9   6 |                 "fieldsV1": {
+   2.9   6 |                     "f:spec": {
+   2.9   6 |                         "f:template": {
+   2.9   6 |                             "f:spec": {
+   2.9   6 |                                 "f:containers": {
+   2.9   6 |                                     "k:{\"name\":\"gateway-dotnet-app\"}": {
+   2.9   6 |                                         "f:image": {}
+   2.9   6 |                                     }
+   2.9   6 |                                 },
+   2.9   6 |                                 "f:initContainers": {
+   2.9   6 |                                     "k:{\"name\":\"copy-files-to-volume\"}": {
+   2.9   6 |                                         "f:image": {}
+   2.9   6 |                                     }
+   2.9   6 |                                 }
+   2.9   6 |                             }
+   2.9   6 |                         },
+   2.9   6 |                         "f:triggers": {}
+   2.9   6 |                     },
+   2.9   6 |                     "f:status": {
+   2.9   6 |                         "f:availableReplicas": {},
+   2.9   6 |                         "f:conditions": {
+   2.9   6 |                             ".": {},
+   2.9   6 |                             "k:{\"type\":\"Available\"}": {
+   2.9   6 |                                 ".": {},
+   2.9   6 |                                 "f:lastTransitionTime": {},
+   2.9   6 |                                 "f:lastUpdateTime": {},
+   2.9   6 |                                 "f:message": {},
+   2.9   6 |                                 "f:status": {},
+   2.9   6 |                                 "f:type": {}
+   2.9   6 |                             },
+   2.9   6 |                             "k:{\"type\":\"Progressing\"}": {
+   2.9   6 |                                 ".": {},
+   2.9   6 |                                 "f:lastTransitionTime": {},
+   2.9   6 |                                 "f:lastUpdateTime": {},
+   2.9   6 |                                 "f:message": {},
+   2.9   6 |                                 "f:reason": {},
+   2.9   6 |                                 "f:status": {},
+   2.9   6 |                                 "f:type": {}
+   2.9   6 |                             }
+   2.9   6 |                         },
+   2.9   6 |                         "f:details": {
+   2.9   6 |                             ".": {},
+   2.9   6 |                             "f:causes": {},
+   2.9   6 |                             "f:message": {}
+   2.9   6 |                         },
+   2.9   6 |                         "f:latestVersion": {},
+   2.9   6 |                         "f:observedGeneration": {},
+   2.9   6 |                         "f:readyReplicas": {},
+   2.9   6 |                         "f:replicas": {},
+   2.9   6 |                         "f:unavailableReplicas": {},
+   2.9   6 |                         "f:updatedReplicas": {}
+   2.9   6 |                     }
+   2.9   6 |                 },
+   2.9   6 |                 "manager": "openshift-controller-manager",
+   2.9   6 |                 "operation": "Update",
+   2.9   6 |                 "time": "2021-01-07T18:56:03Z"
+   2.9   6 |             }
+   2.9   6 |         ],
+   2.9   6 |         "name": "gateway-dotnet-app",
+   2.9   6 |         "namespace": "user1-odo-dotnet-app",
+   2.9   6 |         "resourceVersion": "23019733",
+   2.9   6 |         "selfLink": "/apis/apps.openshift.io/v1/namespaces/user1-odo-dotnet-app/deploymentconfigs/gateway-dotnet-app",
+   2.9   6 |         "uid": "7fdbb588-0133-4c04-992e-84639be6b1b7"
+   2.9   6 |     },
+   2.9   6 |     "spec": {
+   2.9   6 |         "replicas": 1,
+   2.9   6 |         "revisionHistoryLimit": 10,
+   2.9   6 |         "selector": {
+   2.9   6 |             "deploymentconfig": "gateway-dotnet-app"
+   2.9   6 |         },
+   2.9   6 |         "strategy": {
+   2.9   6 |             "activeDeadlineSeconds": 21600,
+   2.9   6 |             "recreateParams": {
+   2.9   6 |                 "timeoutSeconds": 600
+   2.9   6 |             },
+   2.9   6 |             "resources": {},
+   2.9   6 |             "type": "Recreate"
+   2.9   6 |         },
+   2.9   6 |         "template": {
+   2.9   6 |             "metadata": {
+   2.9   6 |                 "annotations": {
+   2.9   6 |                     "alpha.image.policy.openshift.io/resolve-names": "*"
+   2.9   6 |                 },
+   2.9   6 |                 "creationTimestamp": null,
+   2.9   6 |                 "labels": {
+   2.9   6 |                     "deploymentconfig": "gateway-dotnet-app"
+   2.9   6 |                 }
+   2.9   6 |             },
+   2.9   6 |             "spec": {
+   2.9   6 |                 "containers": [
+   2.9   6 |                     {
+   2.9   6 |                         "args": [
+   2.9   6 |                             "-pre",
+   2.9   6 |                             "/opt/odo/bin/s2i-setup",
+   2.9   6 |                             "-main",
+   2.9   6 |                             "/opt/odo/bin/supervisord -c /opt/app-root/conf/supervisor.conf"
+   2.9   6 |                         ],
+   2.9   6 |                         "command": [
+   2.9   6 |                             "/opt/odo/bin/go-init"
+   2.9   6 |                         ],
+   2.9   6 |                         "env": [
+   2.9   6 |                             {
+   2.9   6 |                                 "name": "DEBUG_PORT",
+   2.9   6 |                                 "value": "5858"
+   2.9   6 |                             },
+   2.9   6 |                             {
+   2.9   6 |                                 "name": "ODO_S2I_SCRIPTS_URL",
+   2.9   6 |                                 "value": "/usr/libexec/s2i"
+   2.9   6 |                             },
+   2.9   6 |                             {
+   2.9   6 |                                 "name": "ODO_S2I_SCRIPTS_PROTOCOL",
+   2.9   6 |                                 "value": "image://"
+   2.9   6 |                             },
+   2.9   6 |                             {
+   2.9   6 |                                 "name": "ODO_S2I_SRC_BIN_PATH",
+   2.9   6 |                                 "value": "/tmp"
+   2.9   6 |                             },
+   2.9   6 |                             {
+   2.9   6 |                                 "name": "ODO_S2I_DEPLOYMENT_DIR",
+   2.9   6 |                                 "value": "/opt/app-root/src"
+   2.9   6 |                             },
+   2.9   6 |                             {
+   2.9   6 |                                 "name": "ODO_S2I_WORKING_DIR",
+   2.9   6 |                                 "value": "/opt/app-root/src"
+   2.9   6 |                             },
+   2.9   6 |                             {
+   2.9   6 |                                 "name": "ODO_S2I_BUILDER_IMG",
+   2.9   6 |                                 "value": "ubi8/dotnet-31"
+   2.9   6 |                             },
+   2.9   6 |                             {
+   2.9   6 |                                 "name": "ODO_SRC_BACKUP_DIR",
+   2.9   6 |                                 "value": "/opt/app-root/src-backup"
+   2.9   6 |                             }
+   2.9   6 |                         ],
+   2.9   6 |                         "envFrom": [
+   2.9   6 |                             {
+   2.9   6 |                                 "secretRef": {
+   2.9   6 |                                     "name": "backend-dotnet-app-5000"
+   2.9   6 |                                 }
+   2.9   6 |                             }
+   2.9   6 |                         ],
+   2.9   6 |                         "image": "image-registry.openshift-image-registry.svc:5000/openshift/dotnet@sha256:3c069d99548b81587e8d90dbd19e950f07bbb05cfd19d35c8efcdabe4c57c821",
+   2.9   6 |                         "imagePullPolicy": "IfNotPresent",
+   2.9   6 |                         "name": "gateway-dotnet-app",
+   2.9   6 |                         "ports": [
+   2.9   6 |                             {
+   2.9   6 |                                 "containerPort": 5000,
+   2.9   6 |                                 "name": "5000-tcp",
+   2.9   6 |                                 "protocol": "TCP"
+   2.9   6 |                             }
+   2.9   6 |                         ],
+   2.9   6 |                         "resources": {},
+   2.9   6 |                         "terminationMessagePath": "/dev/termination-log",
+   2.9   6 |                         "terminationMessagePolicy": "File",
+   2.9   6 |                         "volumeMounts": [
+   2.9   6 |                             {
+   2.9   6 |                                 "mountPath": "/opt/odo/",
+   2.9   6 |                                 "name": "odo-supervisord-shared-data"
+   2.9   6 |                             },
+   2.9   6 |                             {
+   2.9   6 |                                 "mountPath": "/opt/app-root",
+   2.9   6 |                                 "name": "gateway-dotnet-app-s2idata",
+   2.9   6 |                                 "subPath": "app-root"
+   2.9   6 |                             }
+   2.9   6 |                         ]
+   2.9   6 |                     }
+   2.9   6 |                 ],
+   2.9   6 |                 "dnsPolicy": "ClusterFirst",
+   2.9   6 |                 "initContainers": [
+   2.9   6 |                     {
+   2.9   6 |                         "args": [
+   2.9   6 |                             "\nSRC=/opt/app-root\nDEST=/mnt/app-root\n\nif [ -f $DEST/.delete-volume ]; then\n    rm -rf $DEST\nfi\n if [ -d $DEST ]; then\n    if [ -f $DEST/.sync-volume ]; then\n        if ! [[ \"$JUPYTER_SYNC_VOLUME\" =~ ^(false|no|n|0)$ ]]; then\n            JUPYTER_SYNC_VOLUME=yes\n        fi\n    fi\n     if [[ \"$JUPYTER_SYNC_VOLUME\" =~ ^(true|yes|y|1)$ ]]; then\n        rsync -ar --ignore-existing $SRC/. $DEST\n    fi\n     exit\nfi\n if [ -d $DEST.setup-volume ]; then\n    rm -rf $DEST.setup-volume\nfi\n\nmkdir -p $DEST.setup-volume\ntar -C $SRC -cf - . | tar -C $DEST.setup-volume -xvf -\nmv $DEST.setup-volume $DEST\n\t\t\t"
+   2.9   6 |                         ],
+   2.9   6 |                         "command": [
+   2.9   6 |                             "sh",
+   2.9   6 |                             "-c"
+   2.9   6 |                         ],
+   2.9   6 |                         "image": "image-registry.openshift-image-registry.svc:5000/openshift/dotnet@sha256:3c069d99548b81587e8d90dbd19e950f07bbb05cfd19d35c8efcdabe4c57c821",
+   2.9   6 |                         "imagePullPolicy": "IfNotPresent",
+   2.9   6 |                         "name": "copy-files-to-volume",
+   2.9   6 |                         "resources": {},
+   2.9   6 |                         "terminationMessagePath": "/dev/termination-log",
+   2.9   6 |                         "terminationMessagePolicy": "File",
+   2.9   6 |                         "volumeMounts": [
+   2.9   6 |                             {
+   2.9   6 |                                 "mountPath": "/mnt",
+   2.9   6 |                                 "name": "gateway-dotnet-app-s2idata"
+   2.9   6 |                             }
+   2.9   6 |                         ]
+   2.9   6 |                     },
+   2.9   6 |                     {
+   2.9   6 |                         "args": [
+   2.9   6 |                             "-r",
+   2.9   6 |                             "/opt/odo-init/.",
+   2.9   6 |                             "/opt/odo/"
+   2.9   6 |                         ],
+   2.9   6 |                         "command": [
+   2.9   6 |                             "/usr/bin/cp"
+   2.9   6 |                         ],
+   2.9   6 |                         "image": "registry.access.redhat.com/ocp-tools-4/odo-init-container-rhel8:1.1.7",
+   2.9   6 |                         "imagePullPolicy": "IfNotPresent",
+   2.9   6 |                         "name": "copy-supervisord",
+   2.9   6 |                         "resources": {},
+   2.9   6 |                         "terminationMessagePath": "/dev/termination-log",
+   2.9   6 |                         "terminationMessagePolicy": "File",
+   2.9   6 |                         "volumeMounts": [
+   2.9   6 |                             {
+   2.9   6 |                                 "mountPath": "/opt/odo/",
+   2.9   6 |                                 "name": "odo-supervisord-shared-data"
+   2.9   6 |                             }
+   2.9   6 |                         ]
+   2.9   6 |                     }
+   2.9   6 |                 ],
+   2.9   6 |                 "restartPolicy": "Always",
+   2.9   6 |                 "schedulerName": "default-scheduler",
+   2.9   6 |                 "securityContext": {},
+   2.9   6 |                 "terminationGracePeriodSeconds": 30,
+   2.9   6 |                 "volumes": [
+   2.9   6 |                     {
+   2.9   6 |                         "emptyDir": {},
+   2.9   6 |                         "name": "odo-supervisord-shared-data"
+   2.9   6 |                     },
+   2.9   6 |                     {
+   2.9   6 |                         "name": "gateway-dotnet-app-s2idata",
+   2.9   6 |                         "persistentVolumeClaim": {
+   2.9   6 |                             "claimName": "gateway-dotnet-app-s2idata"
+   2.9   6 |                         }
+   2.9   6 |                     }
+   2.9   6 |                 ]
+   2.9   6 |             }
+   2.9   6 |         },
+   2.9   6 |         "test": false,
+   2.9   6 |         "triggers": [
+   2.9   6 |             {
+   2.9   6 |                 "type": "ConfigChange"
+   2.9   6 |             },
+   2.9   6 |             {
+   2.9   6 |                 "imageChangeParams": {
+   2.9   6 |                     "automatic": true,
+   2.9   6 |                     "containerNames": [
+   2.9   6 |                         "gateway-dotnet-app",
+   2.9   6 |                         "copy-files-to-volume"
+   2.9   6 |                     ],
+   2.9   6 |                     "from": {
+   2.9   6 |                         "kind": "ImageStreamTag",
+   2.9   6 |                         "name": "dotnet:latest",
+   2.9   6 |                         "namespace": "openshift"
+   2.9   6 |                     },
+   2.9   6 |                     "lastTriggeredImage": "image-registry.openshift-image-registry.svc:5000/openshift/dotnet@sha256:3c069d99548b81587e8d90dbd19e950f07bbb05cfd19d35c8efcdabe4c57c821"
+   2.9   6 |                 },
+   2.9   6 |                 "type": "ImageChange"
+   2.9   6 |             }
+   2.9   6 |         ]
+   2.9   6 |     },
+   2.9   6 |     "status": {
+   2.9   6 |         "availableReplicas": 1,
+   2.9   6 |         "conditions": [
+   2.9   6 |             {
+   2.9   6 |                 "lastTransitionTime": "2021-01-07T18:33:31Z",
+   2.9   6 |                 "lastUpdateTime": "2021-01-07T18:33:54Z",
+   2.9   6 |                 "message": "replication controller \"gateway-dotnet-app-2\" successfully rolled out",
+   2.9   6 |                 "reason": "NewReplicationControllerAvailable",
+   2.9   6 |                 "status": "True",
+   2.9   6 |                 "type": "Progressing"
+   2.9   6 |             },
+   2.9   6 |             {
+   2.9   6 |                 "lastTransitionTime": "2021-01-07T18:56:03Z",
+   2.9   6 |                 "lastUpdateTime": "2021-01-07T18:56:03Z",
+   2.9   6 |                 "message": "Deployment config has minimum availability.",
+   2.9   6 |                 "status": "True",
+   2.9   6 |                 "type": "Available"
+   2.9   6 |             }
+   2.9   6 |         ],
+   2.9   6 |         "details": {
+   2.9   6 |             "causes": [
+   2.9   6 |                 {
+   2.9   6 |                     "type": "ConfigChange"
+   2.9   6 |                 }
+   2.9   6 |             ],
+   2.9   6 |             "message": "config change"
+   2.9   6 |         },
+   2.9   6 |         "latestVersion": 2,
+   2.9   6 |         "observedGeneration": 5,
+   2.9   6 |         "readyReplicas": 1,
+   2.9   6 |         "replicas": 1,
+   2.9   6 |         "unavailableReplicas": 0,
+   2.9   6 |         "updatedReplicas": 1
+   2.9   6 |     }
+   2.9   6 | }
+   2.9 TEL | [6] captured in 0.96 secs.
+   2.9 TEL | Found ssh -> /usr/bin/ssh
+   2.9 TEL | [7] Capturing: ssh -V
+   2.9 TEL | [7] captured in 0.01 secs.
+   2.9 TEL | Found bash -> /bin/bash
+   2.9 TEL | Found sshuttle-telepresence -> /usr/local/Cellar/telepresence/0.108/libexec/sshuttle-telepresence
+   2.9 TEL | Found pfctl -> /sbin/pfctl
+   2.9 TEL | Found sudo -> /usr/bin/sudo
+   2.9 TEL | [8] Running: sudo -n echo -n
+   2.9 TEL | [8] ran in 0.03 secs.
+   2.9 >>> | Starting proxy with method 'vpn-tcp', which has the following limitations: All processes are affected, only one telepresence can run per machine, and you can't use other VPNs. You may need to add cloud hosts and headless services with --also-proxy. For a full list of method limitations see https://telepresence.io/reference/methods.html
+   2.9 TEL | Found sshfs -> /usr/local/bin/sshfs
+   2.9 TEL | Found umount -> /sbin/umount
+   2.9 >>> | Volumes are rooted at $TELEPRESENCE_ROOT. See https://telepresence.io/howto/volumes.html for details.
+   2.9 TEL | [9] Running: oc --context user1-odo-dotnet/api-cluster-2036-2036-example-opentlc-com:6443/user1 --namespace user1-odo-dotnet-app get pods telepresence-connectivity-check --ignore-not-found
+   3.9 TEL | [9] ran in 1.00 secs.
+   4.4 TEL | Scout info: {'latest_version': '0.108', 'application': 'telepresence', 'notices': []}
+   4.4 >>> | Starting network proxy to cluster by swapping out DeploymentConfig gateway-dotnet-app with a proxy Pod
+   4.4 TEL | [10] Running: oc --context user1-odo-dotnet/api-cluster-2036-2036-example-opentlc-com:6443/user1 --namespace user1-odo-dotnet-app create -f -
+   4.9  10 | pod/gateway-dotnet-ap-9e48a121b1244643a6f6e57ab5369d57 created
+   4.9 TEL | [10] ran in 0.48 secs.
+   4.9 TEL | [11] Running: oc --context user1-odo-dotnet/api-cluster-2036-2036-example-opentlc-com:6443/user1 --namespace user1-odo-dotnet-app scale DeploymentConfig gateway-dotnet-app --replicas=0
+   5.9  11 | deploymentconfig.apps.openshift.io/gateway-dotnet-app scaled
+   5.9 TEL | [11] ran in 1.02 secs.
+   5.9 TEL | BEGIN SPAN remote.py:109(wait_for_pod)
+   5.9 TEL | [12] Running: oc --context user1-odo-dotnet/api-cluster-2036-2036-example-opentlc-com:6443/user1 --namespace user1-odo-dotnet-app wait --for=condition=ready --timeout=60s pod/gateway-dotnet-ap-9e48a121b1244643a6f6e57ab5369d57
+  10.8  12 | pod/gateway-dotnet-ap-9e48a121b1244643a6f6e57ab5369d57 condition met
+  10.8 TEL | [12] ran in 4.85 secs.
+  10.8 TEL | [13] Capturing: oc --context user1-odo-dotnet/api-cluster-2036-2036-example-opentlc-com:6443/user1 --namespace user1-odo-dotnet-app get pod gateway-dotnet-ap-9e48a121b1244643a6f6e57ab5369d57 -o json
+  11.9 TEL | [13] captured in 1.12 secs.
+  11.9 TEL | END SPAN remote.py:109(wait_for_pod)    6.0s
+  11.9 TEL | BEGIN SPAN connect.py:37(connect)
+  11.9 TEL | [14] Launching kubectl logs: oc --context user1-odo-dotnet/api-cluster-2036-2036-example-opentlc-com:6443/user1 --namespace user1-odo-dotnet-app logs -f gateway-dotnet-ap-9e48a121b1244643a6f6e57ab5369d57 --container gateway-dotnet-app --tail=10
+  11.9 TEL | [15] Launching kubectl port-forward: oc --context user1-odo-dotnet/api-cluster-2036-2036-example-opentlc-com:6443/user1 --namespace user1-odo-dotnet-app port-forward gateway-dotnet-ap-9e48a121b1244643a6f6e57ab5369d57 55629:8022
+  11.9 TEL | [16] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=5 -q -p 55629 telepresence@127.0.0.1 /bin/true
+  11.9 TEL | [16] exit 255 in 0.01 secs.
+  12.1 TEL | [17] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=5 -q -p 55629 telepresence@127.0.0.1 /bin/true
+  12.2 TEL | [17] exit 255 in 0.01 secs.
+  12.4 TEL | [18] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=5 -q -p 55629 telepresence@127.0.0.1 /bin/true
+  12.4 TEL | [18] exit 255 in 0.01 secs.
+  12.7 TEL | [19] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=5 -q -p 55629 telepresence@127.0.0.1 /bin/true
+  12.7 TEL | [19] exit 255 in 0.01 secs.
+  12.9  14 | 2021-01-07T18:56:25+0000 [-] Loading ./forwarder.py...
+  12.9  14 | 2021-01-07T18:56:25+0000 [-] /etc/resolv.conf changed, reparsing
+  12.9  14 | 2021-01-07T18:56:25+0000 [-] Resolver added ('172.30.0.10', 53) to server list
+  12.9  14 | 2021-01-07T18:56:25+0000 [-] SOCKSv5Factory starting on 9050
+  12.9  14 | 2021-01-07T18:56:25+0000 [socks.SOCKSv5Factory#info] Starting factory <socks.SOCKSv5Factory object at 0x7f1d2e323b38>
+  12.9  14 | 2021-01-07T18:56:25+0000 [-] DNSDatagramProtocol starting on 9053
+  12.9  14 | 2021-01-07T18:56:25+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f1d2e323dd8>
+  12.9  14 | 2021-01-07T18:56:25+0000 [-] Loaded.
+  12.9  14 | 2021-01-07T18:56:25+0000 [twisted.scripts._twistd_unix.UnixAppLogger#info] twistd 20.3.0 (/usr/bin/python3.6 3.6.8) starting up.
+  12.9  14 | 2021-01-07T18:56:25+0000 [twisted.scripts._twistd_unix.UnixAppLogger#info] reactor class: twisted.internet.epollreactor.EPollReactor.
+  12.9 TEL | [20] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=5 -q -p 55629 telepresence@127.0.0.1 /bin/true
+  12.9 TEL | [20] exit 255 in 0.01 secs.
+  13.2 TEL | [21] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=5 -q -p 55629 telepresence@127.0.0.1 /bin/true
+  13.2 TEL | [21] exit 255 in 0.01 secs.
+  13.5 TEL | [22] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=5 -q -p 55629 telepresence@127.0.0.1 /bin/true
+  13.5 TEL | [22] exit 255 in 0.01 secs.
+  13.7 TEL | [23] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=5 -q -p 55629 telepresence@127.0.0.1 /bin/true
+  13.7 TEL | [23] exit 255 in 0.01 secs.
+  13.8  15 | Forwarding from 127.0.0.1:55629 -> 8022
+  13.8  15 | Forwarding from [::1]:55629 -> 8022
+  14.0 TEL | [24] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=5 -q -p 55629 telepresence@127.0.0.1 /bin/true
+  14.0  15 | Handling connection for 55629
+  15.2  24 | Connection to 127.0.0.1 closed by remote host.
+  15.2 TEL | [24] exit 255 in 1.24 secs.
+  15.5 TEL | [25] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=5 -q -p 55629 telepresence@127.0.0.1 /bin/true
+  15.5  15 | Handling connection for 55629
+  16.8  25 | Connection to 127.0.0.1 closed by remote host.
+  16.8 TEL | [25] exit 255 in 1.33 secs.
+  17.1 TEL | [26] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=5 -q -p 55629 telepresence@127.0.0.1 /bin/true
+  17.1  15 | Handling connection for 55629
+  18.3  26 | Connection to 127.0.0.1 closed by remote host.
+  18.4 TEL | [26] exit 255 in 1.29 secs.
+  18.6 TEL | [27] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=5 -q -p 55629 telepresence@127.0.0.1 /bin/true
+  18.6  15 | Handling connection for 55629
+  19.8  27 | Connection to 127.0.0.1 closed by remote host.
+  19.8 TEL | [27] exit 255 in 1.23 secs.
+  20.1 TEL | [28] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=5 -q -p 55629 telepresence@127.0.0.1 /bin/true
+  20.1  15 | Handling connection for 55629
+  21.3  28 | Connection to 127.0.0.1 closed by remote host.
+  21.3 TEL | [28] exit 255 in 1.23 secs.
+  21.6 TEL | [29] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=5 -q -p 55629 telepresence@127.0.0.1 /bin/true
+  21.6  15 | Handling connection for 55629
+  22.8  29 | Connection to 127.0.0.1 closed by remote host.
+  22.8 TEL | [29] exit 255 in 1.26 secs.
+  23.1 TEL | [30] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=5 -q -p 55629 telepresence@127.0.0.1 /bin/true
+  23.1  15 | Handling connection for 55629
+  24.3  30 | Connection to 127.0.0.1 closed by remote host.
+  24.3 TEL | [30] exit 255 in 1.23 secs.
+  24.6 TEL | [31] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=5 -q -p 55629 telepresence@127.0.0.1 /bin/true
+  24.6  15 | Handling connection for 55629
+  25.8  31 | Connection to 127.0.0.1 closed by remote host.
+  25.8 TEL | [31] exit 255 in 1.28 secs.
+  26.1 TEL | [32] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=5 -q -p 55629 telepresence@127.0.0.1 /bin/true
+  26.1  15 | Handling connection for 55629
+  27.3  32 | Connection to 127.0.0.1 closed by remote host.
+  27.4 TEL | [32] exit 255 in 1.28 secs.
+  27.6 TEL | [33] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=5 -q -p 55629 telepresence@127.0.0.1 /bin/true
+  27.6  15 | Handling connection for 55629
+  28.9  33 | Connection to 127.0.0.1 closed by remote host.
+  28.9 TEL | [33] exit 255 in 1.24 secs.
+  29.1 TEL | [34] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=5 -q -p 55629 telepresence@127.0.0.1 /bin/true
+  29.1  15 | Handling connection for 55629
+  30.3  34 | Connection to 127.0.0.1 closed by remote host.
+  30.4 TEL | [34] exit 255 in 1.23 secs.
+  30.6 TEL | [35] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=5 -q -p 55629 telepresence@127.0.0.1 /bin/true
+  30.6  15 | Handling connection for 55629
+  31.8  35 | Connection to 127.0.0.1 closed by remote host.
+  31.9 TEL | [35] exit 255 in 1.24 secs.
+  32.1 TEL | [36] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=5 -q -p 55629 telepresence@127.0.0.1 /bin/true
+  32.1  15 | Handling connection for 55629
+  33.0 TEL | [37] Running: sudo -n echo -n
+  33.0 TEL | [37] ran in 0.04 secs.
+  33.3  36 | Connection to 127.0.0.1 closed by remote host.
+  33.3 TEL | [36] exit 255 in 1.22 secs.
+  33.6 TEL | [38] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=5 -q -p 55629 telepresence@127.0.0.1 /bin/true
+  33.6  15 | Handling connection for 55629
+  34.8  38 | Connection to 127.0.0.1 closed by remote host.
+  34.8 TEL | [38] exit 255 in 1.24 secs.
+  35.1 TEL | [39] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=5 -q -p 55629 telepresence@127.0.0.1 /bin/true
+  35.1  15 | Handling connection for 55629
+  36.3  39 | Connection to 127.0.0.1 closed by remote host.
+  36.4 TEL | [39] exit 255 in 1.29 secs.
+  36.6 TEL | [40] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=5 -q -p 55629 telepresence@127.0.0.1 /bin/true
+  36.6  15 | Handling connection for 55629
+  37.9  40 | Connection to 127.0.0.1 closed by remote host.
+  37.9 TEL | [40] exit 255 in 1.24 secs.
+  38.1 TEL | [41] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=5 -q -p 55629 telepresence@127.0.0.1 /bin/true
+  38.1  15 | Handling connection for 55629
+  39.6  41 | Connection to 127.0.0.1 closed by remote host.
+  39.6 TEL | [41] exit 255 in 1.50 secs.
+  39.9 TEL | [42] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=5 -q -p 55629 telepresence@127.0.0.1 /bin/true
+  39.9  15 | Handling connection for 55629
+  41.4  14 | 2021-01-07T18:56:56+0000 [Poll#error] Failed to contact Telepresence client:
+  41.4  14 | 2021-01-07T18:56:56+0000 [Poll#error] Connection was refused by other side: 111: Connection refused.
+  41.4  14 | 2021-01-07T18:56:56+0000 [Poll#warn] Perhaps it's time to exit?
+  41.5  42 | Connection to 127.0.0.1 closed by remote host.
+  41.5 TEL | [42] exit 255 in 1.67 secs.
+  41.8 TEL | [43] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=5 -q -p 55629 telepresence@127.0.0.1 /bin/true
+  41.8  15 | Handling connection for 55629
+  43.0  43 | Connection to 127.0.0.1 closed by remote host.
+  43.0 TEL | [43] exit 255 in 1.24 secs.
+  43.0 TEL | SSH timed out. Pod info follows.
+  43.0 TEL | [44] Running: oc --context user1-odo-dotnet/api-cluster-2036-2036-example-opentlc-com:6443/user1 --namespace user1-odo-dotnet-app describe pod gateway-dotnet-ap-9e48a121b1244643a6f6e57ab5369d57
+  43.9  44 | Name:         gateway-dotnet-ap-9e48a121b1244643a6f6e57ab5369d57
+  43.9  44 | Namespace:    user1-odo-dotnet-app
+  43.9  44 | Priority:     0
+  43.9  44 | Node:         ip-10-0-147-176.eu-central-1.compute.internal/10.0.147.176
+  43.9  44 | Start Time:   Thu, 07 Jan 2021 19:56:19 +0100
+  43.9  44 | Labels:       deploymentconfig=gateway-dotnet-app
+  43.9  44 |               telepresence=9e48a121b1244643a6f6e57ab5369d57
+  43.9  44 | Annotations:  alpha.image.policy.openshift.io/resolve-names: *
+  43.9  44 |               k8s.v1.cni.cncf.io/network-status:
+  43.9  44 |                 [{
+  43.9  44 |                     "name": "",
+  43.9  44 |                     "interface": "eth0",
+  43.9  44 |                     "ips": [
+  43.9  44 |                         "10.128.2.107"
+  43.9  44 |                     ],
+  43.9  44 |                     "default": true,
+  43.9  44 |                     "dns": {}
+  43.9  44 |                 }]
+  43.9  44 |               k8s.v1.cni.cncf.io/networks-status:
+  43.9  44 |                 [{
+  43.9  44 |                     "name": "",
+  43.9  44 |                     "interface": "eth0",
+  43.9  44 |                     "ips": [
+  43.9  44 |                         "10.128.2.107"
+  43.9  44 |                     ],
+  43.9  44 |                     "default": true,
+  43.9  44 |                     "dns": {}
+  43.9  44 |                 }]
+  43.9  44 |               kubernetes.io/limit-ranger:
+  43.9  44 |                 LimitRanger plugin set: cpu, memory request for container gateway-dotnet-app; cpu, memory limit for container gateway-dotnet-app; cpu, mem...
+  43.9  44 |               openshift.io/scc: restricted
+  43.9  44 | Status:       Running
+  43.9  44 | IP:           10.128.2.107
+  43.9  44 | IPs:
+  43.9  44 |   IP:  10.128.2.107
+  43.9  44 | Init Containers:
+  43.9  44 |   copy-files-to-volume:
+  43.9  44 |     Container ID:  cri-o://be2b25d9505d7e3bcbeab7f31e20a831bc5be8582637ca6d79a6935252b171a4
+  43.9  44 |     Image:         image-registry.openshift-image-registry.svc:5000/openshift/dotnet@sha256:3c069d99548b81587e8d90dbd19e950f07bbb05cfd19d35c8efcdabe4c57c821
+  43.9  44 |     Image ID:      image-registry.openshift-image-registry.svc:5000/openshift/dotnet@sha256:3c069d99548b81587e8d90dbd19e950f07bbb05cfd19d35c8efcdabe4c57c821
+  43.9  44 |     Port:          <none>
+  43.9  44 |     Host Port:     <none>
+  43.9  44 |     Command:
+  43.9  44 |       sh
+  43.9  44 |       -c
+  43.9  44 |     Args:
+  43.9  44 | 
+  43.9  44 |       SRC=/opt/app-root
+  43.9  44 |       DEST=/mnt/app-root
+  43.9  44 | 
+  43.9  44 |       if [ -f $DEST/.delete-volume ]; then
+  43.9  44 |           rm -rf $DEST
+  43.9  44 |       fi
+  43.9  44 |        if [ -d $DEST ]; then
+  43.9  44 |           if [ -f $DEST/.sync-volume ]; then
+  43.9  44 |               if ! [[ "$JUPYTER_SYNC_VOLUME" =~ ^(false|no|n|0)$ ]]; then
+  43.9  44 |                   JUPYTER_SYNC_VOLUME=yes
+  43.9  44 |               fi
+  43.9  44 |           fi
+  43.9  44 |            if [[ "$JUPYTER_SYNC_VOLUME" =~ ^(true|yes|y|1)$ ]]; then
+  43.9  44 |               rsync -ar --ignore-existing $SRC/. $DEST
+  43.9  44 |           fi
+  43.9  44 |            exit
+  43.9  44 |       fi
+  43.9  44 |        if [ -d $DEST.setup-volume ]; then
+  43.9  44 |           rm -rf $DEST.setup-volume
+  43.9  44 |       fi
+  43.9  44 | 
+  43.9  44 |       mkdir -p $DEST.setup-volume
+  43.9  44 |       tar -C $SRC -cf - . | tar -C $DEST.setup-volume -xvf -
+  43.9  44 |       mv $DEST.setup-volume $DEST
+  43.9  44 | 
+  43.9  44 |     State:          Terminated
+  43.9  44 |       Reason:       Completed
+  43.9  44 |       Exit Code:    0
+  43.9  44 |       Started:      Thu, 07 Jan 2021 19:56:23 +0100
+  43.9  44 |       Finished:     Thu, 07 Jan 2021 19:56:23 +0100
+  43.9  44 |     Ready:          True
+  43.9  44 |     Restart Count:  0
+  43.9  44 |     Limits:
+  43.9  44 |       cpu:     500m
+  43.9  44 |       memory:  1536Mi
+  43.9  44 |     Requests:
+  43.9  44 |       cpu:        50m
+  43.9  44 |       memory:     256Mi
+  43.9  44 |     Environment:  <none>
+  43.9  44 |     Mounts:
+  43.9  44 |       /mnt from gateway-dotnet-app-s2idata (rw)
+  43.9  44 |       /var/run/secrets/kubernetes.io/serviceaccount from default-token-rdxgd (ro)
+  43.9  44 |   copy-supervisord:
+  43.9  44 |     Container ID:  cri-o://2211372fa145b5783b6d5ecfc823c82cbfddd04dd804ad2ed0cf928c6594516e
+  43.9  44 |     Image:         registry.access.redhat.com/ocp-tools-4/odo-init-container-rhel8:1.1.7
+  43.9  44 |     Image ID:      registry.access.redhat.com/ocp-tools-4/odo-init-container-rhel8@sha256:80c8f20a8558c51abfb73914b30c4e28d2394721f6d9951d4f7fd1a7b5f237b4
+  43.9  44 |     Port:          <none>
+  43.9  44 |     Host Port:     <none>
+  43.9  44 |     Command:
+  43.9  44 |       /usr/bin/cp
+  43.9  44 |     Args:
+  43.9  44 |       -r
+  43.9  44 |       /opt/odo-init/.
+  43.9  44 |       /opt/odo/
+  43.9  44 |     State:          Terminated
+  43.9  44 |       Reason:       Completed
+  43.9  44 |       Exit Code:    0
+  43.9  44 |       Started:      Thu, 07 Jan 2021 19:56:23 +0100
+  43.9  44 |       Finished:     Thu, 07 Jan 2021 19:56:23 +0100
+  43.9  44 |     Ready:          True
+  43.9  44 |     Restart Count:  0
+  43.9  44 |     Limits:
+  43.9  44 |       cpu:     500m
+  43.9  44 |       memory:  1536Mi
+  43.9  44 |     Requests:
+  43.9  44 |       cpu:        50m
+  43.9  44 |       memory:     256Mi
+  43.9  44 |     Environment:  <none>
+  43.9  44 |     Mounts:
+  43.9  44 |       /opt/odo/ from odo-supervisord-shared-data (rw)
+  43.9  44 |       /var/run/secrets/kubernetes.io/serviceaccount from default-token-rdxgd (ro)
+  43.9  44 | Containers:
+  43.9  44 |   gateway-dotnet-app:
+  43.9  44 |     Container ID:  cri-o://6548d5bfcd6ad687f91aa25b25e9b14beeaa77bd827693dfaec9372ff61b72f8
+  43.9  44 |     Image:         datawire/telepresence-k8s:0.108
+  43.9  44 |     Image ID:      docker.io/datawire/telepresence-k8s@sha256:4090b197f6c4eafe5591b9fba065fb89478b0e2b675d5994fd879d5799cbb06c
+  43.9  44 |     Port:          5000/TCP
+  43.9  44 |     Host Port:     0/TCP
+  43.9  44 |     Command:
+  43.9  44 |       /usr/src/app/run.sh
+  43.9  44 |     State:          Running
+  43.9  44 |       Started:      Thu, 07 Jan 2021 19:56:24 +0100
+  43.9  44 |     Ready:          True
+  43.9  44 |     Restart Count:  0
+  43.9  44 |     Limits:
+  43.9  44 |       cpu:     500m
+  43.9  44 |       memory:  1536Mi
+  43.9  44 |     Requests:
+  43.9  44 |       cpu:     50m
+  43.9  44 |       memory:  256Mi
+  43.9  44 |     Environment Variables from:
+  43.9  44 |       backend-dotnet-app-5000  Secret  Optional: false
+  43.9  44 |     Environment:
+  43.9  44 |       DEBUG_PORT:                        5858
+  43.9  44 |       ODO_S2I_SCRIPTS_URL:               /usr/libexec/s2i
+  43.9  44 |       ODO_S2I_SCRIPTS_PROTOCOL:          image://
+  43.9  44 |       ODO_S2I_SRC_BIN_PATH:              /tmp
+  43.9  44 |       ODO_S2I_DEPLOYMENT_DIR:            /opt/app-root/src
+  43.9  44 |       ODO_S2I_WORKING_DIR:               /opt/app-root/src
+  43.9  44 |       ODO_S2I_BUILDER_IMG:               ubi8/dotnet-31
+  43.9  44 |       ODO_SRC_BACKUP_DIR:                /opt/app-root/src-backup
+  43.9  44 |       TELEPRESENCE_CONTAINER_NAMESPACE:  user1-odo-dotnet-app (v1:metadata.namespace)
+  43.9  44 |     Mounts:
+  43.9  44 |       /opt/app-root from gateway-dotnet-app-s2idata (rw,path="app-root")
+  43.9  44 |       /opt/odo/ from odo-supervisord-shared-data (rw)
+  43.9  44 |       /var/run/secrets/kubernetes.io/serviceaccount from default-token-rdxgd (ro)
+  43.9  44 | Conditions:
+  43.9  44 |   Type              Status
+  43.9  44 |   Initialized       True
+  43.9  44 |   Ready             True
+  43.9  44 |   ContainersReady   True
+  43.9  44 |   PodScheduled      True
+  43.9  44 | Volumes:
+  43.9  44 |   odo-supervisord-shared-data:
+  43.9  44 |     Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+  43.9  44 |     Medium:
+  43.9  44 |     SizeLimit:  <unset>
+  43.9  44 |   gateway-dotnet-app-s2idata:
+  43.9  44 |     Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+  43.9  44 |     ClaimName:  gateway-dotnet-app-s2idata
+  43.9  44 |     ReadOnly:   false
+  43.9  44 |   default-token-rdxgd:
+  43.9  44 |     Type:        Secret (a volume populated by a Secret)
+  43.9  44 |     SecretName:  default-token-rdxgd
+  43.9  44 |     Optional:    false
+  43.9  44 | QoS Class:       Burstable
+  43.9  44 | Node-Selectors:  <none>
+  43.9  44 | Tolerations:     node.kubernetes.io/memory-pressure:NoSchedule
+  43.9  44 |                  node.kubernetes.io/not-ready:NoExecute for 300s
+  43.9  44 |                  node.kubernetes.io/unreachable:NoExecute for 300s
+  43.9  44 | Events:
+  43.9  44 |   Type    Reason          Age   From                                                    Message
+  43.9  44 |   ----    ------          ----  ----                                                    -------
+  43.9  44 |   Normal  Scheduled       39s   default-scheduler                                       Successfully assigned user1-odo-dotnet-app/gateway-dotnet-ap-9e48a121b1244643a6f6e57ab5369d57 to ip-10-0-147-176.eu-central-1.compute.internal
+  43.9  44 |   Normal  AddedInterface  36s   multus                                                  Add eth0 [10.128.2.107/23]
+  43.9  44 |   Normal  Pulled          36s   kubelet, ip-10-0-147-176.eu-central-1.compute.internal  Container image "image-registry.openshift-image-registry.svc:5000/openshift/dotnet@sha256:3c069d99548b81587e8d90dbd19e950f07bbb05cfd19d35c8efcdabe4c57c821" already present on machine
+  43.9  44 |   Normal  Created         35s   kubelet, ip-10-0-147-176.eu-central-1.compute.internal  Created container copy-files-to-volume
+  43.9  44 |   Normal  Started         35s   kubelet, ip-10-0-147-176.eu-central-1.compute.internal  Started container copy-files-to-volume
+  43.9  44 |   Normal  Pulled          35s   kubelet, ip-10-0-147-176.eu-central-1.compute.internal  Container image "registry.access.redhat.com/ocp-tools-4/odo-init-container-rhel8:1.1.7" already present on machine
+  43.9  44 |   Normal  Created         35s   kubelet, ip-10-0-147-176.eu-central-1.compute.internal  Created container copy-supervisord
+  43.9  44 |   Normal  Started         35s   kubelet, ip-10-0-147-176.eu-central-1.compute.internal  Started container copy-supervisord
+  43.9  44 |   Normal  Pulled          34s   kubelet, ip-10-0-147-176.eu-central-1.compute.internal  Container image "datawire/telepresence-k8s:0.108" already present on machine
+  43.9  44 |   Normal  Created         34s   kubelet, ip-10-0-147-176.eu-central-1.compute.internal  Created container gateway-dotnet-app
+  43.9  44 |   Normal  Started         34s   kubelet, ip-10-0-147-176.eu-central-1.compute.internal  Started container gateway-dotnet-app
+  43.9 TEL | [44] ran in 0.92 secs.
+  45.9 TEL | CRASH: SSH to the cluster failed to start. See logfile.
+  45.9 TEL | Traceback (most recent call last):
+  45.9 TEL |   File "/usr/local/bin/telepresence/telepresence/cli.py", line 135, in crash_reporting
+  45.9 TEL |     yield
+  45.9 TEL |   File "/usr/local/bin/telepresence/telepresence/main.py", line 68, in main
+  45.9 TEL |     socks_port, ssh = do_connect(runner, remote_info)
+  45.9 TEL |   File "/usr/local/bin/telepresence/telepresence/connect/connect.py", line 117, in do_connect
+  45.9 TEL |     return connect(
+  45.9 TEL |   File "/usr/local/bin/telepresence/telepresence/connect/connect.py", line 70, in connect
+  45.9 TEL |     raise RuntimeError("SSH to the cluster failed to start. See logfile.")
+  45.9 TEL | RuntimeError: SSH to the cluster failed to start. See logfile.
+  45.9 TEL | (calling crash reporter...)
+  62.4 >>> | Exit cleanup in progress
+  62.4 TEL | (Cleanup) Kill BG process [15] kubectl port-forward
+  62.4 TEL | [15] kubectl port-forward: exit -15
+  62.4 TEL | (Cleanup) Kill BG process [14] kubectl logs
+  62.4 TEL | [14] kubectl logs: exit -15
+  62.4 TEL | Background process (kubectl logs) exited with return code -15. Command was:
+  62.4 TEL |   oc --context user1-odo-dotnet/api-cluster-2036-2036-example-opentlc-com:6443/user1 --namespace user1-odo-dotnet-app logs -f gateway-dotnet-ap-9e48a121b1244643a6f6e57ab5369d57 --container gateway-dotnet-app --tail=10
+  62.4 TEL | 
+  62.4 TEL | Recent output was:
+  62.4 TEL |   2021-01-07T18:56:25+0000 [-] SOCKSv5Factory starting on 9050
+  62.4 TEL |   2021-01-07T18:56:25+0000 [socks.SOCKSv5Factory#info] Starting factory <socks.SOCKSv5Factory object at 0x7f1d2e323b38>
+  62.4 TEL |   2021-01-07T18:56:25+0000 [-] DNSDatagramProtocol starting on 9053
+  62.4 TEL |   2021-01-07T18:56:25+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7f1d2e323dd8>
+  62.4 TEL |   2021-01-07T18:56:25+0000 [-] Loaded.
+  62.4 TEL |   2021-01-07T18:56:25+0000 [twisted.scripts._twistd_unix.UnixAppLogger#info] twistd 20.3.0 (/usr/bin/python3.6 3.6.8) starting up.
+  62.4 TEL |   2021-01-07T18:56:25+0000 [twisted.scripts._twistd_unix.UnixAppLogger#info] reactor class: twisted.internet.epollreactor.EPollReactor.
+  62.4 TEL |   2021-01-07T18:56:56+0000 [Poll#error] Failed to contact Telepresence client:
+  62.4 TEL |   2021-01-07T18:56:56+0000 [Poll#error] Connection was refused by other side: 111: Connection refused.
+  62.4 TEL |   2021-01-07T18:56:56+0000 [Poll#warn] Perhaps it's time to exit?
+  62.4 TEL | (Cleanup) Re-scale original deployment
+  62.4 TEL | [45] Running: oc --context user1-odo-dotnet/api-cluster-2036-2036-example-opentlc-com:6443/user1 --namespace user1-odo-dotnet-app scale DeploymentConfig gateway-dotnet-app --replicas=1
+  62.9  45 | deploymentconfig.apps.openshift.io/gateway-dotnet-app scaled
+  62.9 TEL | [45] ran in 0.52 secs.
+  62.9 TEL | (Cleanup) Delete proxy Pod
+  62.9 >>> | Cleaning up Pod
+  62.9 TEL | [46] Running: oc --context user1-odo-dotnet/api-cluster-2036-2036-example-opentlc-com:6443/user1 --namespace user1-odo-dotnet-app delete --ignore-not-found --wait=false --selector=telepresence=9e48a121b1244643a6f6e57ab5369d57 Pod
+  63.1 TEL | [47] Running: sudo -n echo -n
+  63.2 TEL | [47] ran in 0.05 secs.
+  63.9  46 | pod "gateway-dotnet-ap-9e48a121b1244643a6f6e57ab5369d57" deleted
+  63.9 TEL | [46] ran in 0.98 secs.
+  63.9 TEL | (Cleanup) Kill sudo privileges holder
+  63.9 TEL | (Cleanup) Stop time tracking
+  63.9 TEL | END SPAN main.py:40(main)   63.9s
+  63.9 TEL | (Cleanup) Remove temporary directory
+  63.9 TEL | (Cleanup) Save caches
+  64.2 TEL | (sudo privileges holder thread exiting)

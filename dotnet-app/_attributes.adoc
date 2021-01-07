@@ -1,0 +1,4 @@
+:username: user1
+:app_name: dotnet-app
+:backend_component_name: backend
+:gateway_component_name: gateway
