@@ -1,0 +1,20 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: ServiceBinding
+metadata:
+  name: backend-servicebinding-test
+spec:
+  application:
+    group: apps
+    resource: deployments
+    name: backend
+    version: v1
+  services:
+    - group: apps.openshift.io
+      version: v1
+      kind: DeploymentConfig
+      name: my-database
+      id: database
+  mappings:
+    - name: DB_USERNAMEXX
+      value: '{{ .database.POSTGRESQL_PASSWORD }}'
+

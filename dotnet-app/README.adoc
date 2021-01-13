@@ -5,7 +5,7 @@ include::_attributes.adoc[]
 
 [source,bash,role="execute",subs="verbatim,attributes"]
 ----
-git clone 
+git clone {GIT_URL}
 cd odo-presence
 export GIT_CLONE_DIR=$(pwd)
 ----

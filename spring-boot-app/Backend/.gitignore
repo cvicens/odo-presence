@@ -1,0 +1,16 @@
+# IntelliJ
+.idea
+*.iml
+target
+
+# Eclipse
+.metadata
+.settings
+.classpath
+.project
+bin
+tmp
+
+old/
+.odo/env
+.odo/odo-file-index.json

@@ -114,7 +114,18 @@ Telepresence will...
 ----
 export TELEPRESENCE_USE_OCP_IMAGE=NO
 
-ODO_COMPONENT_NAME=$(yq r .odo/config.yaml ComponentSettings.Name)
+ODO_COMPONENT_NAME=$(yq r .odo/env/env.yaml ComponentSettings.Name)
 
-telepresence --swap-deployment $(oc get dc --selector=app.kubernetes.io/instance=${ODO_COMPONENT_NAME} -o jsonpath='{.items[*].metadata.name}') --expose 8080
+telepresence --swap-deployment $(oc get deploy --selector=app.kubernetes.io/instance=${ODO_COMPONENT_NAME} -o jsonpath='{.items[*].metadata.name}') --expose 8080
 ----
+
+== Testing locally with `openshift` profile
+
+In this case we don't need connect to the PostgreSQL database we just deployed in OpenShift, we're going to use H2.
+
+[source,bash,role="execute",subs="verbatim,attributes"]
+----
+DEPLOYMENTCONFIG_POSTGRESQL_USER=luke DEPLOYMENTCONFIG_POSTGRESQL_PASSWORD=secret mvn clean spring-boot:run -Dspring-boot.run.profiles=openshift -Popenshift
+----
+
+psql -U $POSTGRESQL_USER $POSTGRESQL_DATABASE -c 'select * from FRUIT;'

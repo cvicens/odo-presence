@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: ${project.artifactId}
+  annotations:
+    app.openshift.io/connects-to: my-database
+  labels:
+    app.kubernetes.io/part-of: fruit-service-app
+    app.openshift.io/runtime: spring
+spec:
+  template:
+    spec:
+      containers:
+        - env:
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                   name: my-database-secret
+                   key: user
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: my-database-secret
+                  key: password
+            - name: JAVA_OPTIONS
+              valueFrom:
+                configMapKeyRef:
+                  name: fruit-service-configmap
+                  key: java-options

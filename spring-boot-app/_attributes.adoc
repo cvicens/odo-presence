@@ -1,5 +1,5 @@
 :GIT_URL: https://github.com/cvicens/odo-presence
 :username: user1
-:app_name: dotnet-app
+:app_name: spring-boot-app
 :backend_component_name: backend
 :gateway_component_name: gateway
